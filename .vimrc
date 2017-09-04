@@ -109,4 +109,3 @@ set autoindent
 
 
 let python_higlight_all=1
-
