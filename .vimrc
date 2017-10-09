@@ -12,13 +12,16 @@ Plugin 'gmarik/Vundle.vim'
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 Bundle 'Valloric/YouCompleteMe'
 
+
 "auto complete plugins
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'honza/vim-snippets'
-
 Plugin 'garbas/vim-snipmate'
 
+"utility
+Plugin 'tpope/vim-unimpaired'
+Plugin 'tpope/vim-sensible'
 Plugin 'scrooloose/syntastic'
 Plugin 'nvie/vim-flake8'
 
@@ -54,22 +57,25 @@ Plugin 'tpope/vim-rails' "rails stuff :S
 Plugin 'ecomba/vim-ruby-refactoring' "refactoring tools
 Plugin 'vim-ruby/vim-ruby' "syntax higlighting for ruby
 
+"HASKELL PLUGINS
+Plugin 'dag/vim2hs' "light-weight syntax checking
+"Plugin 'raichoo/haskell-vim'
+Plugin 'Shougo/vimproc.vim'
 call vundle#end()            " required
+
 filetype plugin indent on    " required
 syntax on
 syntax enable
 
 
 " Show trailing whitespace and spaces before a tab:
-:highlight ExtraWhitespace ctermbg=red guibg=red
-:autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\\t/
 
 " Remove highlights with leader + enter (leader is \ key)
 nmap <Leader><CR> :nohlsearch<cr>
 
 set background=dark
 "add color scheme
-colorscheme gruvbox
+"colorscheme gruvbox
 
 set splitbelow
 set splitright
@@ -180,6 +186,7 @@ endif
 
 
 
+:autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\\t/ 
 
 "PYTHON SETTINGS
 au BufNewFile,BufRead *.py
@@ -190,6 +197,8 @@ au BufNewFile,BufRead *.py
     \ set expandtab |
     \ set autoindent |
     \ set fileformat=unix |
+    \ let python_higlight_all=1 |
+    \ :highlight ExtraWhitespace ctermbg=blue guibg=blue|
 
 au BufNewFile,BufRead *.js,*.html,*.css
     \ set tabstop=2 |
@@ -197,13 +206,8 @@ au BufNewFile,BufRead *.js,*.html,*.css
     \ set shiftwidth=2 |
 
 
-
-
-let python_higlight_all=1
-
-
 "RUBY SETTINGS
-au BufNewFile,BufRead *.rb	
+au BufNewFile,BufRead *.rb
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
@@ -215,3 +219,44 @@ au BufNewFile,BufRead *.rb
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+
+"HASKELL SETTINGS
+au BufNewFile,Bufread *.hs
+	\ set nocompatible |
+ 	\ set number |
+	\ set nowrap |
+	\ set showmode |
+	\ set tw=80 |
+	\ set smartcase | 
+	\ set smarttab |
+	\ set smartindent |
+	\ set autoindent |
+	\ set softtabstop=2 |
+	\ set shiftwidth=2 |
+	\ set expandtab |
+	\ set incsearch |
+	\ set history=1000 |
+	\ set clipboard=unnamedplus,autoselect |
+	\ set completeopt=menuone,menu,longest |
+	\ set wildignore+=*\\tmp\\*,*.swp,*.swo,*.zip,.git,.cabal-sandbox |
+	\ set wildmode=longest,list,full |
+	\ set wildmenu |
+	\ set t_Co=256 |
+
+map <silent> tw :GhcModTypeInsert<CR>
+map <silent> ts :GhcModSplitFunCase<CR>
+map <silent> tq :GhcModType<CR>
+map <silent> te :GhcModTypeClear<CR>
+
+
+
+map <Leader>s :SyntasticToggleMode<CR>
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 0
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 0
