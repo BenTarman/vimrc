@@ -1,7 +1,7 @@
 # vimrc
 vimrc file
 
-My vim configuration for python programming and ruby programming.
+My vim configuration. Supports haskell, javascript, handlesbars/mustache, python, ruby.
 
 Notes to self
 1. ycm must be installed
