@@ -12,6 +12,12 @@ Plugin 'gmarik/Vundle.vim'
 " Add all your plugins here (note older versions of Vundle used Bundle instead of Plugin)
 Bundle 'Valloric/YouCompleteMe'
 
+"javascripto!
+Plugin 'dsawardekar/ember.vim'
+Plugin 'pangloss/vim-javascript'
+
+"html, handlebars, mustache, and other frotenend stuff
+Plugin 'mustache/vim-mustache-handlebars'
 
 "auto complete plugins
 Plugin 'MarcWeber/vim-addon-mw-utils'
@@ -188,9 +194,9 @@ endif
 
 :autocmd Syntax * syn match ExtraWhitespace /\s\+$\| \+\ze\\t/ 
 
-"PYTHON SETTINGS
-au BufNewFile,BufRead *.py
-    \ set tabstop=4 |
+"PYTHON SETTINGS 
+au BufNewFile,BufRead *.py 
+    \ set tabstop=4 | 
     \ set softtabstop=4 |
     \ set shiftwidth=4 |
     \ set textwidth=79 |
@@ -198,9 +204,17 @@ au BufNewFile,BufRead *.py
     \ set autoindent |
     \ set fileformat=unix |
     \ let python_higlight_all=1 |
-    \ :highlight ExtraWhitespace ctermbg=blue guibg=blue|
+    \ :highlight ExtraWhitespace ctermbg=blue guibg=blue |
 
+"Web stuff
 au BufNewFile,BufRead *.js,*.html,*.css
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
+
+
+"C++ SETTINGS
+au BufNewFile,BufRead *.cpp,*.h,*.c
     \ set tabstop=2 |
     \ set softtabstop=2 |
     \ set shiftwidth=2 |
@@ -247,6 +261,17 @@ map <silent> tw :GhcModTypeInsert<CR>
 map <silent> ts :GhcModSplitFunCase<CR>
 map <silent> tq :GhcModType<CR>
 map <silent> te :GhcModTypeClear<CR>
+
+
+"JAVASCRIPTO SETTINGS
+au BufNewFile,BufRead *.js
+    \ set tabstop=2 |
+    \ set softtabstop=2 |
+    \ set shiftwidth=2 |
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix |
 
 
 
